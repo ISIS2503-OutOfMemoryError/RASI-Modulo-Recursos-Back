@@ -12,7 +12,7 @@ class EquipoMedico(models.Model):
     )
 
     #Atributos
-    codigo = models.IntegerField()
+    id = models.IntegerField(primary_key=True)
     descripcion = models.CharField(max_length=200)
     tipo_equipo = models.CharField(max_length=20, choices=TIPO_EQUIPO_CHOICES, default='Standard')
     #Relaciones

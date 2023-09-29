@@ -1,12 +1,12 @@
 from ..models import Sede
 
-def create_sede(codigo, nombre, direccion, telefono, ciudad):
-    sede = Sede(codigo=codigo, nombre=nombre, direccion=direccion, telefono=telefono, ciudad=ciudad)
+def create_sede( id, nombre, direccion, telefono, ciudad):
+    sede = Sede(id=id,nombre=nombre, direccion=direccion, telefono=telefono, ciudad=ciudad)
     sede.save()
     return sede
 
-def update_sede(codigo, nombre, direccion, telefono, ciudad):
-    sede = Sede.objects.get(codigo=codigo)
+def update_sede(id,nombre, direccion, telefono, ciudad):
+    sede = Sede.objects.get(id=id)
     sede.nombre = nombre
     sede.direccion = direccion
     sede.telefono = telefono
