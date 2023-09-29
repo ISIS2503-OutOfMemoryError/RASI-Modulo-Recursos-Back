@@ -2,7 +2,7 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .logic import equipo_medico_logic  # Importa tu lógica de sede si es necesario
-
+from sede.models import Sede
 @csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
 def equipo_create(request):
     if request.method == 'POST':
@@ -13,7 +13,14 @@ def equipo_create(request):
             id = data.get('id')
             descripcion = data.get('descripcion')
             tipo_equipo = data.get('tipo_equipo')
-            sede = data.get('sede')
+            sede_data = data.get('sede')
+
+            sede = Sede(
+            id=sede_data.get('id'),
+            nombre=sede_data.get('nombre'),
+            direccion=sede_data.get('direccion'),
+            telefono=sede_data.get('telefono'),
+            ciudad=sede_data.get('ciudad'))
 
             if descripcion and tipo_equipo and sede and id:
                 # Llama a la función create_sede con los datos validados
@@ -41,7 +48,14 @@ def equipo_update(request):
             id = data.get('id')
             descripcion = data.get('descripcion')
             tipo_equipo = data.get('tipo_equipo')
-            sede = data.get('sede')
+            sede_data = data.get('sede')
+
+            sede = Sede(
+            id=sede_data.get('id'),
+            nombre=sede_data.get('nombre'),
+            direccion=sede_data.get('direccion'),
+            telefono=sede_data.get('telefono'),
+            ciudad=sede_data.get('ciudad'))
 
             if descripcion and tipo_equipo and sede and id:
                 # Llama a la función create_sede con los datos validados

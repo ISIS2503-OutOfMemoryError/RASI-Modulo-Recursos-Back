@@ -1,6 +1,6 @@
 from ..models import EquipoMedico
 
-def create_equipos(id,descripcion,tipo_equipo,sede):
+def create_equipo(id,descripcion,tipo_equipo,sede):
     equipo = EquipoMedico(
         id = id,
         descripcion = descripcion,
