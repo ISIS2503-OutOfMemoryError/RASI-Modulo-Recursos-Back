@@ -21,6 +21,7 @@ def equipo_create(request):
             direccion=sede_data.get('direccion'),
             telefono=sede_data.get('telefono'),
             ciudad=sede_data.get('ciudad'))
+            print(sede_data)
 
             if descripcion and tipo_equipo and sede and id:
                 # Llama a la función create_sede con los datos validados
@@ -29,6 +30,7 @@ def equipo_create(request):
                 return JsonResponse({'message': response_message}, status=201)
             else:
                 # Maneja el caso de datos faltantes o inválidos
+                print("Error en los datos enviados")
                 return JsonResponse({'error': 'Error en los datos enviados'}, status=400)
         except json.JSONDecodeError:
             print("JSONDecodeError")
