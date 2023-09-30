@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'latencia_db',
-        'USER': 'latencia-db',
+        'USER': 'latencia-user',
         'PASSWORD': 'isis2503',
         'HOST': '10.38.240.3',
         'PORT': '',
