@@ -18,4 +18,4 @@ class EquipoMedico(models.Model):
     #Relaciones
     sede = models.ForeignKey(Sede, on_delete=models.CASCADE, null=True)
     def __str__(self):
-        return self.nombre
+        return self.id
