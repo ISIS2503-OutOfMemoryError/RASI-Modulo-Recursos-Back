@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'rasi_medical.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rasi_medical',
-        'USER': 'andresarevalo',
-        'PASSWORD': '1650',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'latencia_db',
+        'USER': 'latencia-db',
+        'PASSWORD': 'isis2503',
+        'HOST': '10.38.240.3',
+        'PORT': '',
     }
 }
 
