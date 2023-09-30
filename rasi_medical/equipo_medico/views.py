@@ -66,6 +66,7 @@ def equipo_update(request):
                 return JsonResponse({'message': response_message}, status=200)
             else:
                 # Maneja el caso de datos faltantes o inválidos
+                print("Error en los datos enviados")
                 return JsonResponse({'error': 'Error en los datos enviados'}, status=400)
         except json.JSONDecodeError:
             print("JSONDecodeError")
