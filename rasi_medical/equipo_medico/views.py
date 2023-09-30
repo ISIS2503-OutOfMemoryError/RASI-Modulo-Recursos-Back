@@ -59,24 +59,6 @@ def equipo_update(request):
             telefono=sede_data.get('telefono'),
             ciudad=sede_data.get('ciudad'))
 
-            #PRUEBAAA
-            if not descripcion:
-                # El if de la descripción falló
-                print("Falla en la descripción")
-
-            if not tipo_equipo:
-                # El if del tipo de equipo falló
-                print("Falla en el tipo de equipo")
-
-            if not sede:
-                # El if de sede falló
-                print("Falla en la sede")
-
-            if not id:
-                # El if del id falló
-                print("Falla en el id")
-
-
             if descripcion and tipo_equipo and sede and id:
                 # Llama a la función create_sede con los datos validados
                 equipo = equipo_medico_logic.update_equipo(id, descripcion, tipo_equipo, sede)
