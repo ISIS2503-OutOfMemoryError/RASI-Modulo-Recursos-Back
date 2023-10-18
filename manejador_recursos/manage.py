@@ -2,12 +2,11 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-#variable publica
-lock_out=0 #variable para controlar el voto
+ID_INSTANCIA = 1
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rasi_medical.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'manejador_recursos.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
