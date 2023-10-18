@@ -8,6 +8,7 @@ def equipo_create(request):
     if request.method == 'POST':
         try:
             # Intenta analizar los datos JSON de la solicitud
+            print(request.body)
             data = json.loads(request.body)
             #validar campos requeridos
             required_fields = ['id', 'descripcion', 'tipo_equipo', 'sede']
