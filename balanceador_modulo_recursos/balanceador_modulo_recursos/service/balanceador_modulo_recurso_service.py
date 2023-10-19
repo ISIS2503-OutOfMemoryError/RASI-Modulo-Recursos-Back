@@ -2,7 +2,7 @@ import concurrent.futures
 import requests
 
 def execute_requests(body,path,type):
-    urls = ["http://34.31.203.253:8080", "http://34.27.1.195:8080"]
+    urls = ["http://10.128.0.2:8080", "http://10.128.0.3:8080"]
     #urls = ["http://localhost:8001"]
     #Arreglar path
     url1 = urls[0] + path
