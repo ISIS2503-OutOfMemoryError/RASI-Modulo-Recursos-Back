@@ -8,10 +8,9 @@ def send_request(request):
     body = json.loads(request.body)
     path = request.path
     type = request.method
-    print(path)
-    print(type)
     #return JsonResponse({'response':'bien'}, status=200)
-    return service.execute_requests(body,path,type)
+    response = service.execute_requests(body,path,type)
+    return JsonResponse({'mensaje':'equipo creado correctamente'}, status=response.status_code)
 
 
 
