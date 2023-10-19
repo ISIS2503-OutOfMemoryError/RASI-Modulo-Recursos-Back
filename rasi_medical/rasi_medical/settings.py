@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'rasi_medical.wsgi.application'
         'HOST': 'localhost',
         'PORT': '5432',
     }
-} """
+} """ 
 
 DATABASES = {
     'default': {

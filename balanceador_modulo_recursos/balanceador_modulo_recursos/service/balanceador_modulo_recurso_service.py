@@ -7,7 +7,7 @@ def execute_requests(body,path,type):
     #Arreglar path
     url1 = urls[0] + path
     url2 = urls[1] + path
-    urls = [url1,url2]
+    urls = [url1]
     #Realizar concurrencia de peticiónes
     with concurrent.futures.ThreadPoolExecutor() as executor:
         future_to_url = {executor.submit(send_request, url,body,type): url for url in urls}

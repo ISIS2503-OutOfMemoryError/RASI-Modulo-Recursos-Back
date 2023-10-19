@@ -19,12 +19,12 @@ def update_equipo_medico(data):
     try:
         #URL
         url = 'http://10.128.0.7:8080/equipo/put_equipo/'
-        #url = 'http://localhost:8080/equipo/put_equipo/'
+        #url = 'http://localhost:8002/equipo/put_equipo/'
         #Body
         json = {"id" : id_instancia + 0.1,
                 "body":data}
         #peticion
-        response = requests.post(url, json=json)
+        response = requests.put(url, json=json)
         return response
     except:
         return "Error en la creacion del equipo medico"
