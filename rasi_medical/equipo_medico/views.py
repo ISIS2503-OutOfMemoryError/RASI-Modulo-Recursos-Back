@@ -24,7 +24,6 @@ def equipo_create(request):
                 lock_out=id
             else:
                 return JsonResponse({'error':'error aceptación petición'}, status=401)
-
             #Cuerpo del equipo
             id = body.get('id')
             descripcion = body.get('descripcion')
@@ -61,22 +60,38 @@ def equipo_create(request):
 
 @csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
 def equipo_update(request):
+    global lock_out
+
     if request.method == 'PUT':
         try:
             # Intenta analizar los datos JSON de la solicitud
             data = json.loads(request.body)
             print(data)
             id = data.get('id')
-            descripcion = data.get('descripcion')
-            tipo_equipo = data.get('tipo_equipo')
-            sede_data = data.get('sede')
-
+            body = data.get('body')
+            #Voting
+            print(lock_out)
+            if lock_out==0:
+                print("Voto aceptado")
+                lock_out=id
+            else:
+                return JsonResponse({'error':'error aceptación petición'}, status=401)
+            #Cuerpo 
+            id = body.get('id')
+            descripcion = body.get('descripcion')
+            tipo_equipo = body.get('tipo_equipo')
+            sede_data = body.get('sede')
+            #Relación sede
             sede = Sede(
             id=sede_data.get('id'),
             nombre=sede_data.get('nombre'),
             direccion=sede_data.get('direccion'),
             telefono=sede_data.get('telefono'),
             ciudad=sede_data.get('ciudad'))
+
+            #Retorna el candado a estado neutro
+            lock_out=0
+            print("termine", lock_out)
 
             if descripcion and tipo_equipo and sede and id:
                 # Llama a la función create_sede con los datos validados
