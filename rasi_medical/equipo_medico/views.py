@@ -61,6 +61,7 @@ def equipo_create(request):
 @csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
 def equipo_update(request):
     global lock_out
+    voto_aceptado=0
     print("primer lock", lock_out)
     if request.method == 'PUT':
         try:
@@ -74,10 +75,11 @@ def equipo_update(request):
             if lock_out==0:
                 print("Voto aceptado")
                 lock_out=id
+                voto_aceptado=1
             else:
                 #Retorna el candado a estado neutro
                 lock_out=0
-                return JsonResponse({'error':'error aceptación petición'}, status=401)
+                mensaje = {'error':'error aceptación petición'}
             #Cuerpo 
             id = body.get('id')
             descripcion = body.get('descripcion')
@@ -93,7 +95,7 @@ def equipo_update(request):
 
             print("termine", lock_out)
 
-            if descripcion and tipo_equipo and sede and id:
+            if voto_aceptado==1:
                 # Llama a la función create_sede con los datos validados
                 equipo = equipo_medico_logic.update_equipo(id, descripcion, tipo_equipo, sede)
                 response_message = f'Se ha actualizado el equipo "{id}" con éxito.'
@@ -101,7 +103,8 @@ def equipo_update(request):
             else:
                 # Maneja el caso de datos faltantes o inválidos
                 print("Error en los datos enviados")
-                return JsonResponse({'error': 'Error en los datos enviados'}, status=400)
+                return JsonResponse(mensaje, status=401)
+            
         except json.JSONDecodeError:
             print("JSONDecodeError")
             # Maneja el caso en el que la solicitud no contiene datos JSON válidos
