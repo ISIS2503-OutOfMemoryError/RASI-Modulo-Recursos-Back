@@ -9,7 +9,7 @@ from manage import lock_out
 @csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
 def equipo_create(request):
     global lock_out
-    
+    print("primer lock", lock_out)
     if request.method == 'POST':
         try:
             # Intenta analizar los datos JSON de la solicitud
