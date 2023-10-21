@@ -61,7 +61,7 @@ def equipo_create(request):
 @csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
 def equipo_update(request):
     global lock_out
-
+    print("primer lock", lock_out)
     if request.method == 'PUT':
         try:
             # Intenta analizar los datos JSON de la solicitud
@@ -75,6 +75,8 @@ def equipo_update(request):
                 print("Voto aceptado")
                 lock_out=id
             else:
+                #Retorna el candado a estado neutro
+                lock_out=0
                 return JsonResponse({'error':'error aceptación petición'}, status=401)
             #Cuerpo 
             id = body.get('id')
@@ -89,8 +91,6 @@ def equipo_update(request):
             telefono=sede_data.get('telefono'),
             ciudad=sede_data.get('ciudad'))
 
-            #Retorna el candado a estado neutro
-            lock_out=0
             print("termine", lock_out)
 
             if descripcion and tipo_equipo and sede and id:
