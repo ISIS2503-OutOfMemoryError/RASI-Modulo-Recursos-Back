@@ -23,6 +23,8 @@ def equipo_create(request):
                 print("Voto aceptado")
                 lock_out=id
             else:
+                #Retorna el candado a estado neutro
+                lock_out=0
                 return JsonResponse({'error':'error aceptación petición'}, status=401)
             #Cuerpo del equipo
             id = body.get('id')
@@ -37,8 +39,6 @@ def equipo_create(request):
             telefono=sede_data.get('telefono'),
             ciudad=sede_data.get('ciudad'))
             print(sede_data)
-            #Retorna el candado a estado neutro
-            lock_out=0
             print("termine", lock_out)
 
             if descripcion and tipo_equipo and sede and id:
