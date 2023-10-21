@@ -62,7 +62,6 @@ def equipo_create(request):
 def equipo_update(request):
     global lock_out
     voto_aceptado=0
-    print("primer lock", lock_out)
     if request.method == 'PUT':
         try:
             # Intenta analizar los datos JSON de la solicitud
@@ -73,12 +72,9 @@ def equipo_update(request):
             #Voting
             print(lock_out)
             if lock_out==0:
-                print("Voto aceptado")
                 lock_out=id
                 voto_aceptado=1
             else:
-                #Retorna el candado a estado neutro
-                lock_out=0
                 mensaje = {'error':'error aceptación petición'}
             #Cuerpo 
             id = body.get('id')
@@ -93,7 +89,8 @@ def equipo_update(request):
             telefono=sede_data.get('telefono'),
             ciudad=sede_data.get('ciudad'))
 
-            print("termine", lock_out)
+            #Retorna el candado a estado neutro
+            lock_out=0
 
             if voto_aceptado==1:
                 # Llama a la función create_sede con los datos validados
@@ -102,7 +99,6 @@ def equipo_update(request):
                 return JsonResponse({'message': response_message}, status=200)
             else:
                 # Maneja el caso de datos faltantes o inválidos
-                print("Error en los datos enviados")
                 return JsonResponse(mensaje, status=401)
             
         except json.JSONDecodeError:
