@@ -9,8 +9,8 @@ def send_request(request):
         path = request.path
         type = request.method
         response = service.execute_requests_get(path,type)
-        print(response.json())
-        return JsonResponse(response.json(), status=response.status_code)
+        dic = response.json().get('fields')
+        return JsonResponse(dic, status=response.status_code)
     else:
         body = json.loads(request.body)
         path = request.path
