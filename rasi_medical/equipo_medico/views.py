@@ -118,7 +118,6 @@ def equipos_get(request):
         # Intenta analizar los datos JSON de la solicitud
         data = json.loads(request.body)
         id = data.get('id')
-        body = data.get('body')
         #Voting
         print(lock_out)
         if lock_out==0:
