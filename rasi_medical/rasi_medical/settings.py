@@ -94,7 +94,7 @@ DATABASES = {
         'USER': 'recursos_user',
         'PASSWORD': 'isis2503',
         'HOST': '10.138.0.5',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
