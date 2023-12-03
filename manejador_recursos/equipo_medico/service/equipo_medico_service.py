@@ -4,7 +4,7 @@ from manage import ID_INSTANCIA as id_instancia
 def crear_equipo_medico(data):
     try:
         #URL
-        url = 'http://10.138.0.2:8080/equipo/crear_equipo/'
+        url = 'http://10.138.0.6:8080/equipo/crear_equipo/'
         #url = 'http://localhost:8080/equipo/crear_equipo/'
         #Body
         json = {"id" : id_instancia + 0.1,
@@ -18,7 +18,7 @@ def crear_equipo_medico(data):
 def update_equipo_medico(data):
     try:
         #URL
-        url = 'http://10.138.0.2:8080/equipo/put_equipo/'
+        url = 'http://10.138.0.6:8080/equipo/put_equipo/'
         #url = 'http://localhost:8002/equipo/put_equipo/'
         #Body
         json = {"id" : id_instancia + 0.1,
