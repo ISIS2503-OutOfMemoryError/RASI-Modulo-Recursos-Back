@@ -130,7 +130,7 @@ def equipos_get(request):
             return JsonResponse({'error':'error aceptación petición'}, status=401)
         
         # Llama a la función create_sede con los datos validados
-        equipos = equipo_medico_logic.get_equipos()
+        equipos = json.dumps(equipo_medico_logic.get_equipos())
         print(equipos)
         return JsonResponse(equipos,safe=False, status=200)
     # Maneja el caso en el que la solicitud no es un POST
