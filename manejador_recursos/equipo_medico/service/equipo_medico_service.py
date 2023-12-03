@@ -12,10 +12,6 @@ def crear_equipo_medico(data):
                 "body":data}
         #peticion
         response = requests.post(url, json=json)
-
-        #if response.status_code == 401:
-            #time.sleep(2)
-
         return response
     except:
         return "Error en la creacion del equipo medico"
@@ -38,7 +34,7 @@ def update_equipo_medico(data):
 def get_equipos_medicos():
     try:
         #URL
-        url = 'http://10.138.0.2:8080/equipo/equipos/'
+        url = 'http://10.138.0.6:8080/equipo/equipos/'
         #url = 'http://localhost:8002/equipo/equipos/'
         #peticion
         response = requests.get(url)

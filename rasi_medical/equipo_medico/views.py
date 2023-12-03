@@ -11,7 +11,6 @@ import time
 @csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
 def equipo_create(request):
     global lock_out
-    print("primer lock", lock_out)
     if request.method == 'POST':
         try:
             # Intenta analizar los datos JSON de la solicitud
@@ -28,6 +27,7 @@ def equipo_create(request):
                 time.sleep(0.1)
                 lock_out=0
                 return JsonResponse({'error':'error aceptación petición'}, status=401)
+            
             #Cuerpo del equipo
             id = body.get('id')
             descripcion = body.get('descripcion')
@@ -40,7 +40,6 @@ def equipo_create(request):
             direccion=sede_data.get('direccion'),
             telefono=sede_data.get('telefono'),
             ciudad=sede_data.get('ciudad'))
-            print("termine", lock_out)
 
             if descripcion and tipo_equipo and sede and id:
                 # Llama a la función create_sede con los datos validados
@@ -51,6 +50,7 @@ def equipo_create(request):
                 # Maneja el caso de datos faltantes o inválidos
                 print("Error en los datos enviados")
                 return JsonResponse({'error': 'Error en los datos enviados'}, status=400)
+        
         except json.JSONDecodeError:
             print("JSONDecodeError")
             # Maneja el caso en el que la solicitud no contiene datos JSON válidos
@@ -62,21 +62,23 @@ def equipo_create(request):
 @csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
 def equipo_update(request):
     global lock_out
-    voto_aceptado=0
     if request.method == 'PUT':
         try:
             # Intenta analizar los datos JSON de la solicitud
             data = json.loads(request.body)
-            print(data)
             id = data.get('id')
             body = data.get('body')
             #Voting
             print(lock_out)
             if lock_out==0:
+                print("Voto aceptado")
                 lock_out=id
-                voto_aceptado=1
             else:
-                mensaje = {'error':'error aceptación petición'}
+                #Retorna el candado a estado neutro
+                time.sleep(0.1)
+                lock_out=0
+                return JsonResponse({'error':'error aceptación petición'}, status=401)
+            
             #Cuerpo 
             id = body.get('id')
             descripcion = body.get('descripcion')
@@ -90,17 +92,15 @@ def equipo_update(request):
             telefono=sede_data.get('telefono'),
             ciudad=sede_data.get('ciudad'))
 
-            #Retorna el candado a estado neutro
-            lock_out=0
-
-            if voto_aceptado==1:
+            if descripcion and tipo_equipo and sede and id:
                 # Llama a la función create_sede con los datos validados
                 equipo = equipo_medico_logic.update_equipo(id, descripcion, tipo_equipo, sede)
                 response_message = f'Se ha actualizado el equipo "{id}" con éxito.'
                 return JsonResponse({'message': response_message}, status=200)
             else:
                 # Maneja el caso de datos faltantes o inválidos
-                return JsonResponse(mensaje, status=401)
+                print("Error en los datos enviados")
+                return JsonResponse({'error': 'Error en los datos enviados'}, status=400)
             
         except json.JSONDecodeError:
             print("JSONDecodeError")
@@ -115,6 +115,21 @@ def equipo_update(request):
 @csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
 def equipos_get(request):
     if request.method == 'GET':
+        # Intenta analizar los datos JSON de la solicitud
+        data = json.loads(request.body)
+        id = data.get('id')
+        body = data.get('body')
+        #Voting
+        print(lock_out)
+        if lock_out==0:
+            print("Voto aceptado")
+            lock_out=id
+        else:
+            #Retorna el candado a estado neutro
+            time.sleep(0.1)
+            lock_out=0
+            return JsonResponse({'error':'error aceptación petición'}, status=401)
+        
         # Llama a la función create_sede con los datos validados
         equipos = equipo_medico_logic.get_equipos()
         equipos_json = serialize('json', equipos)
