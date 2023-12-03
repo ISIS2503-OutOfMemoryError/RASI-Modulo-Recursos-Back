@@ -8,7 +8,7 @@ def send_request(request):
     body = json.loads(request.body)
     path = request.path
     type = request.method
-    response = service.execute_requests(body,path,type)
+    response = service.execute_requests_get(path,type)
     return JsonResponse({'mensaje':'petición enviada'}, status=response.status_code)
 
 
