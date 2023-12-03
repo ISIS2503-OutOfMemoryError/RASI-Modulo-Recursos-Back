@@ -15,7 +15,6 @@ def equipo_create(request):
         try:
             # Intenta analizar los datos JSON de la solicitud
             data = json.loads(request.body)
-            print(data)
             id = data.get('id')
             body = data.get('body')
             #Voting
@@ -39,7 +38,6 @@ def equipo_create(request):
             direccion=sede_data.get('direccion'),
             telefono=sede_data.get('telefono'),
             ciudad=sede_data.get('ciudad'))
-            print(sede_data)
             print("termine", lock_out)
 
             if descripcion and tipo_equipo and sede and id:
