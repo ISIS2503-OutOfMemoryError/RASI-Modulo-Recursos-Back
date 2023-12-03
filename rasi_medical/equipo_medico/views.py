@@ -25,7 +25,7 @@ def equipo_create(request):
                 lock_out=id
             else:
                 #Retorna el candado a estado neutro
-                time.sleep(2)
+                time.sleep(0.1)
                 lock_out=0
                 return JsonResponse({'error':'error aceptación petición'}, status=401)
             #Cuerpo del equipo
