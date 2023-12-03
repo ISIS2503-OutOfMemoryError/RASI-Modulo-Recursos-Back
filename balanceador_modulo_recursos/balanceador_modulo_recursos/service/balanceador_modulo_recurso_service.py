@@ -26,7 +26,7 @@ def execute_requests(body,path,type):
     return response
 
 def execute_requests_get(path,type):
-    urls = ["http://10.138.0.3:8080", "http://10.138.0.4:8080"]
+    urls = ["http://10.138.0.10:8080", "http://10.138.0.11:8080"]
     #Arreglar path
     url1 = urls[0] + path
     url2 = urls[1] + path
