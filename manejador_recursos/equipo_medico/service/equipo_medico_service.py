@@ -1,5 +1,6 @@
 import requests
 from manage import ID_INSTANCIA as id_instancia
+import time
 
 def crear_equipo_medico(data):
     try:
@@ -11,6 +12,10 @@ def crear_equipo_medico(data):
                 "body":data}
         #peticion
         response = requests.post(url, json=json)
+
+        if response.status_code == 401:
+            time.sleep(2)
+
         return response
     except:
         return "Error en la creacion del equipo medico"

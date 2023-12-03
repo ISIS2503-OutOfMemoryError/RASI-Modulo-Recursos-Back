@@ -21,7 +21,7 @@ def equipo_create(request):
             print(lock_out)
             if lock_out==0:
                 print("Voto aceptado")
-                #lock_out=id
+                lock_out=id
             else:
                 #Retorna el candado a estado neutro
                 lock_out=0
