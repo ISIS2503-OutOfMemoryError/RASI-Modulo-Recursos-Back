@@ -22,11 +22,10 @@ def equipo_create(request):
             print(lock_out)
             if lock_out==0:
                 print("Voto aceptado")
-                time.sleep(2)
                 lock_out=id
             else:
                 #Retorna el candado a estado neutro
-
+                time.sleep(2)
                 lock_out=0
                 return JsonResponse({'error':'error aceptación petición'}, status=401)
             #Cuerpo del equipo
