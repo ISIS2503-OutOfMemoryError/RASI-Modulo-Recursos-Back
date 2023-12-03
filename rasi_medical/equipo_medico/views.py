@@ -114,6 +114,7 @@ def equipo_update(request):
 #Get equipos 
 @csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
 def equipos_get(request):
+    global lock_out
     if request.method == 'GET':
         # Intenta analizar los datos JSON de la solicitud
         id = 1
