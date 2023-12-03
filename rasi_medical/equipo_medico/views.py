@@ -116,8 +116,7 @@ def equipo_update(request):
 def equipos_get(request):
     if request.method == 'GET':
         # Intenta analizar los datos JSON de la solicitud
-        data = json.loads(request.body)
-        id = data.get('id')
+        id = 1
         #Voting
         print(lock_out)
         if lock_out==0:
