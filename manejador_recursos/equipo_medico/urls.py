@@ -6,4 +6,5 @@ urlpatterns = [
     path('crear_equipo/', views.equipo_create),
     # Ruta para actualizar una sede (PUT)
     path('put_equipo/', views.equipo_update),
+    path('equipos/', views.get_equipos_medicos),
 ]

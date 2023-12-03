@@ -4,7 +4,7 @@ from manage import ID_INSTANCIA as id_instancia
 def crear_equipo_medico(data):
     try:
         #URL
-        url = 'http://10.128.0.7:8080/equipo/crear_equipo/'
+        url = 'http://10.138.0.2:8080/equipo/crear_equipo/'
         #url = 'http://localhost:8080/equipo/crear_equipo/'
         #Body
         json = {"id" : id_instancia + 0.1,
@@ -18,7 +18,7 @@ def crear_equipo_medico(data):
 def update_equipo_medico(data):
     try:
         #URL
-        url = 'http://10.128.0.7:8080/equipo/put_equipo/'
+        url = 'http://10.138.0.2:8080/equipo/put_equipo/'
         #url = 'http://localhost:8002/equipo/put_equipo/'
         #Body
         json = {"id" : id_instancia + 0.1,
@@ -28,6 +28,20 @@ def update_equipo_medico(data):
         return response
     except:
         return "Error en la creacion del equipo medico"
+    
+
+def get_equipos_medicos():
+    try:
+        #URL
+        url = 'http://10.138.0.2:8080/equipo/equipos/'
+        #url = 'http://localhost:8002/equipo/equipos/'
+        #peticion
+        response = requests.get(url)
+        return response
+    except:
+        return "Error en la obtencion de los equipo medico"
+
+
 
 
     

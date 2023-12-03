@@ -61,4 +61,20 @@ def equipo_update(request):
     # Maneja el caso en el que la solicitud no es un POST (por ejemplo, una solicitud GET)
     return JsonResponse({'error': 'Esta vista solo acepta solicitudes PUT'}, status=405)
 
+@csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
+def get_equipos_medicos(request):
+    if request.method == 'GET':
+        try:
+            respuesta = service.get_equipos_medicos()
+            if respuesta.status_code == 200:
+                return JsonResponse(respuesta.json(), status=200, safe=False)
+            else:
+                return JsonResponse(respuesta.text, status=respuesta.status_code, safe=False)
+        
+        except json.JSONDecodeError:
+            print("JSONDecodeError")
+            # Maneja el caso en el que la solicitud no contiene datos JSON válidos
+            return JsonResponse({'error': 'Solicitud JSON no válida'}, status=400)
 
+    # Maneja el caso en el que la solicitud no es un POST (por ejemplo, una solicitud GET)
+    return JsonResponse({'error': 'Esta vista solo acepta solicitudes GET'}, status=405)

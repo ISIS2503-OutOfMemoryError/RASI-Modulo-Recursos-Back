@@ -19,3 +19,6 @@ def update_equipo(id,descripcion,tipo_equipo,sede):
         equipo.save()
     return equipo
 
+def get_equipos():
+    equipos = EquipoMedico.objects.all()
+    return equipos

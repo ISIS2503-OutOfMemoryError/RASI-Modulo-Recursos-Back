@@ -2,6 +2,7 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .logic import equipo_medico_logic  # Importa tu lógica de sede si es necesario
+from django.core.serializers import serialize
 from sede.models import Sede
 # Declarar la variable lo como global fuera de la función
 from manage import lock_out
@@ -106,6 +107,18 @@ def equipo_update(request):
             # Maneja el caso en el que la solicitud no contiene datos JSON válidos
             return JsonResponse({'error': 'Solicitud JSON no válida'}, status=400)
 
+    # Maneja el caso en el que la solicitud no es un POST
+    return JsonResponse({'error': 'Esta vista solo acepta solicitudes POST'}, status=405)
+
+
+#Get equipos 
+@csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
+def equipos_get(request):
+    if request.method == 'GET':
+        # Llama a la función create_sede con los datos validados
+        equipos = equipo_medico_logic.get_equipos()
+        equipos_json = serialize('json', equipos)
+        return JsonResponse(equipos_json,safe=False, status=200)
     # Maneja el caso en el que la solicitud no es un POST
     return JsonResponse({'error': 'Esta vista solo acepta solicitudes POST'}, status=405)
 
