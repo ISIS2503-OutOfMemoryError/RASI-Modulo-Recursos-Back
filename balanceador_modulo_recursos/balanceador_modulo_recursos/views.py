@@ -9,6 +9,7 @@ def send_request(request):
         path = request.path
         type = request.method
         response = service.execute_requests_get(path,type)
+        print(response.json())
         dic = response.json()['fields']
         print(dic)
         return JsonResponse(dic, status=response.status_code)
