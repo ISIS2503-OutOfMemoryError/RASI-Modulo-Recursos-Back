@@ -131,7 +131,7 @@ def equipos_get(request):
         
         # Llama a la función create_sede con los datos validados
         equipos = equipo_medico_logic.get_equipos()
-        print(equipos[0])
+        print(equipos)
         return JsonResponse(equipos,safe=False, status=200)
     # Maneja el caso en el que la solicitud no es un POST
     return JsonResponse({'error': 'Esta vista solo acepta solicitudes POST'}, status=405)
