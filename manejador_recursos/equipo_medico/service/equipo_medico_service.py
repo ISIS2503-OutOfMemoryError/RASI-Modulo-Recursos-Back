@@ -13,8 +13,8 @@ def crear_equipo_medico(data):
         #peticion
         response = requests.post(url, json=json)
 
-        if response.status_code == 401:
-            time.sleep(2)
+        #if response.status_code == 401:
+            #time.sleep(2)
 
         return response
     except:

@@ -6,6 +6,7 @@ from django.core.serializers import serialize
 from sede.models import Sede
 # Declarar la variable lo como global fuera de la función
 from manage import lock_out
+import time
 
 @csrf_exempt  # Esto es para deshabilitar la protección CSRF para fines de demostración
 def equipo_create(request):
@@ -21,9 +22,11 @@ def equipo_create(request):
             print(lock_out)
             if lock_out==0:
                 print("Voto aceptado")
+                time.sleep(2)
                 lock_out=id
             else:
                 #Retorna el candado a estado neutro
+
                 lock_out=0
                 return JsonResponse({'error':'error aceptación petición'}, status=401)
             #Cuerpo del equipo
