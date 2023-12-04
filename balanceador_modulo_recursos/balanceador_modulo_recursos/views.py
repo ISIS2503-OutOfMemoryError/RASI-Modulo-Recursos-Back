@@ -16,7 +16,7 @@ def send_request(request):
         path = request.path
         type = request.method
         response = service.execute_requests(body,path,type)
-        return JsonResponse(response.json(), status=response.status_code)
+        return JsonResponse(response.json(), status=response.status_code, safe=False)
 
 
 
