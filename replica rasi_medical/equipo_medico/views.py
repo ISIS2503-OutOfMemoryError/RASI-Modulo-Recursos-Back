@@ -125,7 +125,7 @@ def equipos_get(request):
             lock_out=id
         else:
             #Retorna el candado a estado neutro
-            time.sleep(0.1)
+            time.sleep(1)
             lock_out=0
             return JsonResponse({'error':'error aceptación petición'}, status=401)
         
