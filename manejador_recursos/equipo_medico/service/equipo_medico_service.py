@@ -34,7 +34,7 @@ def update_equipo_medico(data):
 def get_equipos_medicos():
     try:
         #URL
-        url = 'http://10.138.0.6:8080/equipo/equipos/'
+        url = 'http://10.138.0.12:8080/equipo/equipos/'
         #url = 'http://localhost:8002/equipo/equipos/'
         #peticion
         response = requests.get(url)
