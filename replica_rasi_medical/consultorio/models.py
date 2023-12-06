@@ -2,6 +2,7 @@ from django.db import models
 from sede.models import Sede
 from equipo_medico.models import EquipoMedico
 from dj_cqrs.mixins import ReplicaMixin
+from django.utils import timezone
 
 class Consultorio(ReplicaMixin, models.Model):
 
@@ -13,7 +14,12 @@ class Consultorio(ReplicaMixin, models.Model):
     sede = models.ForeignKey(Sede, on_delete=models.CASCADE)
     #Esta realción es uno a uno, toca cabiarla uno a muchos
     #Es decir, un consultorio puede tener varios equipos médicos
-    equipo_medico = models.ForeignKey(EquipoMedico, on_delete=models.CASCADE)   
+    equipo_medico = models.ForeignKey(EquipoMedico, on_delete=models.CASCADE)  
+    
+    cqrs_revision = models.IntegerField(default=0)
+    cqrs_update = models.DateTimeField(default=timezone.now)
+
+
     def __str__(self):  
         return self.nombre
     

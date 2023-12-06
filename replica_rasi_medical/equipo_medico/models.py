@@ -1,6 +1,7 @@
 from django.db import models
 from sede.models import Sede
 from dj_cqrs.mixins import ReplicaMixin
+from django.utils import tiemzone
 
 class EquipoMedico(ReplicaMixin, models.Model):
 
@@ -23,6 +24,9 @@ class EquipoMedico(ReplicaMixin, models.Model):
     tipo_equipo = models.CharField(max_length=20, choices=TIPO_EQUIPO_CHOICES, default='Standard')
     #Relaciones
     sede = models.ForeignKey(Sede, on_delete=models.CASCADE, null=True)
+    
+    cqrs_revision = models.IntegerField(default=0)
+    cqrs_update = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.tipo_equipo
@@ -42,5 +46,7 @@ class EquipoMedico(ReplicaMixin, models.Model):
             id=mapped_data['id'],
             descripcion=mapped_data['descripcion'],
             tipo_equipo=mapped_data['tipo_equipo'],
-            sede=sede
+            sede=sede,
+            cqrs_revision=mapped_data['cqrs_revision'],
+            cqrs_updated=mapped_data['cqrs_updated'],
         )
