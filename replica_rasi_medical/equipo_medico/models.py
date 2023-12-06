@@ -1,7 +1,7 @@
 from django.db import models
 from sede.models import Sede
 from dj_cqrs.mixins import ReplicaMixin
-from django.utils import tiemzone
+from django.utils import timezone
 
 class EquipoMedico(ReplicaMixin, models.Model):
 
