@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "211de8ef-82c0-4913-9103-728cf8023caa",
+		"name": "RASI sede",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19613532"
+	},
+	"item": [
+		{
+			"name": "Create Sede",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":2,\n    \"nombre\": \"Nombre de la Sede 2\",\n    \"direccion\": \"Dirección de la Sede 2\",\n    \"telefono\": 1234567891,\n    \"ciudad\": \"Ciudad de la Sede 2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://104.199.117.61:8080/sede/crear_sede/",
+					"protocol": "http",
+					"host": [
+						"104",
+						"199",
+						"117",
+						"61"
+					],
+					"port": "8080",
+					"path": [
+						"sede",
+						"crear_sede",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Sede",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":2,\n    \"nombre\": \"Nombre de la Sede 2.2\",\n    \"direccion\": \"Dirección de la Sede 2.2\",\n    \"telefono\": 1234567891,\n    \"ciudad\": \"Ciudad de la Sede\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://34.117.231.92:80/sede/put_sede/",
+					"protocol": "http",
+					"host": [
+						"34",
+						"117",
+						"231",
+						"92"
+					],
+					"port": "80",
+					"path": [
+						"sede",
+						"put_sede",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
