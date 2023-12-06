@@ -40,8 +40,8 @@ class EquipoMedico(ReplicaMixin, models.Model):
 
     @classmethod    
     def cqrs_create(cls, sync, mapped_data, previous_data=None, meta=None):
-        print(mapped_data['equipo_medico'])
-        sede = cls._handle_sede(mapped_data['equipo_medico'])
+        print(mapped_data['sede'])
+        sede = cls._handle_sede(mapped_data['sede'])
         return EquipoMedico.objects.create(
             id=mapped_data['id'],
             descripcion=mapped_data['descripcion'],
