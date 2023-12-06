@@ -76,24 +76,13 @@ WSGI_APPLICATION = 'rasi_medical.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-""" DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rasi_medical',
-        'USER': 'andresarevalo',
-        'PASSWORD': '1650',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-} """ 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'monitoring_db',
-        'USER': 'recursos_user',
+        'NAME': 'replica-recursos-db',
+        'USER': 'replica-user',
         'PASSWORD': 'isis2503',
-        'HOST': '10.138.0.9',
+        'HOST': '10.220.193.5',
         'PORT': '5432',
     }
 }
@@ -138,3 +127,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CQRS = {
+    'transport': 'dj_cqrs.transport.RabbitMQTransport',
+    'host': '10.138.0.13',
+    'port': 5672,
+    'user': 'monitoring-app',
+    'password': 'isis2503',
+    'queue': 'monitoring_replica' # settings used only in replica
+}
