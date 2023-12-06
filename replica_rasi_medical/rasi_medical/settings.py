@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'sede',
     'consultorio',
     'equipo_medico',
-    'django_cqrs'
+    'dj_cqrs'
 ]
 
 MIDDLEWARE = [
