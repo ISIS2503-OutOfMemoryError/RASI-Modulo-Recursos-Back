@@ -1,6 +1,11 @@
 from django.db import models
 from sede.models import Sede
-class EquipoMedico(models.Model):
+from dj_cqrs.mixins import MasterMixin
+
+class EquipoMedico(MasterMixin, models.Model):
+
+    CQRS_ID = 'equipo_medico_model'
+
     # Definir las opciones para el tipo de equipo como una tupla de tuplas
     TIPO_EQUIPO_CHOICES = (
         ('Standard', 'Standard'),

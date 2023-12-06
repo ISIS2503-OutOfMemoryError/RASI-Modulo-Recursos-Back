@@ -1,8 +1,12 @@
 from django.db import models
 from sede.models import Sede
 from equipo_medico.models import EquipoMedico
+from dj_cqrs.mixins import MasterMixin
 
-class Consultorio(models.Model):
+class Consultorio(MasterMixin, models.Model):
+    
+    CQRS_ID = 'consultorio_model'
+
     id = models.AutoField(primary_key=True)
     numero = models.IntegerField()
     sede = models.ForeignKey(Sede, on_delete=models.CASCADE)
