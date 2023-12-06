@@ -31,3 +31,15 @@ class Sede(ReplicaMixin, models.Model):
             cqrs_revision=mapped_data['cqrs_revision'],
             cqrs_updated=mapped_data['cqrs_updated'],
         )
+
+
+    def cqrs_update(self, sync, mapped_data, previous_data=None, meta=None):
+        self.id=mapped_data['id']
+        self.nombre=mapped_data['nombre']
+        self.direccion=mapped_data['direccion']
+        self.telefono=mapped_data['telefono']
+        self.ciudad=mapped_data['ciudad']
+        self.cqrs_revision=mapped_data['cqrs_revision']
+        self.cqrs_updated=mapped_data['cqrs_updated']
+        self.save()
+        return self

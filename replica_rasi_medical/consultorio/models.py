@@ -51,3 +51,18 @@ class Consultorio(ReplicaMixin, models.Model):
             cqrs_revision=mapped_data['cqrs_revision'],
             cqrs_updated=mapped_data['cqrs_updated'],
         )
+    
+
+    def cqrs_update(self, sync, mapped_data, previous_data=None, meta=None):
+        print(mapped_data['sede'])
+        sede = self._handle_sede(mapped_data['sede'])
+        print(mapped_data['equipo_medico'])
+        equipo_medico = self._handle_equipo_medico(mapped_data['equipo_medico'])
+        self.id=mapped_data['id']
+        self.numero=mapped_data['numero']
+        self.sede=sede
+        self.equipo_medico=equipo_medico
+        self.cqrs_revision=mapped_data['cqrs_revision']
+        self.cqrs_updated=mapped_data['cqrs_updated']
+        self.save()
+        return self
