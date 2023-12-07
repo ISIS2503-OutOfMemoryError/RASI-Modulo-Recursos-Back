@@ -48,8 +48,6 @@ class Consultorio(ReplicaMixin, models.Model):
             numero=mapped_data['numero'],
             sede=sede,
             equipo_medico=equipo_medico,
-            cqrs_revision=mapped_data['cqrs_revision'],
-            cqrs_updated=mapped_data['cqrs_updated'],
         )
     
 
@@ -62,7 +60,5 @@ class Consultorio(ReplicaMixin, models.Model):
         self.numero=mapped_data['numero']
         self.sede=sede
         self.equipo_medico=equipo_medico
-        self.cqrs_revision=mapped_data['cqrs_revision']
-        self.cqrs_updated=mapped_data['cqrs_updated']
         self.save()
         return self

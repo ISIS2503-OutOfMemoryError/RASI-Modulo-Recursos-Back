@@ -28,8 +28,6 @@ class Sede(ReplicaMixin, models.Model):
             direccion=mapped_data['direccion'],
             telefono=mapped_data['telefono'],
             ciudad=mapped_data['ciudad'],
-            cqrs_revision=mapped_data['cqrs_revision'],
-            cqrs_updated=mapped_data['cqrs_updated'],
         )
 
 
@@ -39,7 +37,5 @@ class Sede(ReplicaMixin, models.Model):
         self.direccion=mapped_data['direccion']
         self.telefono=mapped_data['telefono']
         self.ciudad=mapped_data['ciudad']
-        self.cqrs_revision=mapped_data['cqrs_revision']
-        self.cqrs_updated=mapped_data['cqrs_updated']
         self.save()
         return self
