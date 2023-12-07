@@ -43,7 +43,7 @@ class EquipoMedico(ReplicaMixin, models.Model):
             id=mapped_data['id'],
             descripcion=mapped_data['descripcion'],
             tipo_equipo=mapped_data['tipo_equipo'],
-            sede=sede
+            sede=sede,
         )
     
 

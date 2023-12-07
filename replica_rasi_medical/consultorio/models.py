@@ -15,10 +15,6 @@ class Consultorio(ReplicaMixin, models.Model):
     #Esta realción es uno a uno, toca cabiarla uno a muchos
     #Es decir, un consultorio puede tener varios equipos médicos
     equipo_medico = models.ForeignKey(EquipoMedico, on_delete=models.CASCADE)  
-    
-    cqrs_revision = models.IntegerField(default=0)
-    cqrs_update = models.DateTimeField(default=timezone.now)
-
 
     def __str__(self):  
         return self.nombre
