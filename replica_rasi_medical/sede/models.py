@@ -12,9 +12,6 @@ class Sede(ReplicaMixin, models.Model):
     direccion = models.CharField(max_length=50)
     telefono = models.IntegerField()
     ciudad = models.CharField(max_length=50)
-    
-    cqrs_revision = models.IntegerField(default=0)
-    cqrs_update = models.DateTimeField(default=timezone.now)
 
     def __str__(self):  
         return self.nombre
